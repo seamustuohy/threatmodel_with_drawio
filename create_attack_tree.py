@@ -51,7 +51,8 @@ def make_drawio_csv(input_csv, style_name):
     # We don't actually need difficulty since we push it into 'type' for leaves
     csv_keys.remove('difficulty')
     csv_keys.append('style')
-    csv_header_string =  '"{name}","{id}","{parent}","{type}","{url}","{description}","{style}"'
+    csv_keys.append('note')
+    csv_header_string =  '"{name}","{id}","{parent}","{type}","{url}","{description}","{style}","{note}"'
     output_csv.append(",".join(csv_keys))
     for item in input_csv:
         item['style'] = style.get(
@@ -59,9 +60,9 @@ def make_drawio_csv(input_csv, style_name):
             "rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;"
         )
         if item['type'] == "LEAF":
-            item['type'] = item['difficulty']
+            item['note'] = item['difficulty']
         else:
-            item['type'] = "({0})".format(item['type'])
+            item['note'] = "({0})".format(item['type'])
         _string = csv_header_string.format(**item)
         output_csv.append(_string)
     return "\n".join(output_csv)
@@ -104,7 +105,7 @@ https://github.com/jgraph/drawio/blob/e2e661b9937adc189e89cee711c06ce0fc59e711/s
                 "values":[]},
         "label":{"comments":["Node label with placeholders and HTML.",
                              "Default is '%name_of_first_column%'."],
-                 "values":['label: %name%<br><i style="color:gray;">%type%</i><br>']},
+                 "values":['label: %name%<br><i style="color:gray;">%note%</i><br>']},
         "style":{"comments":["Node style (placeholders are replaced once).",
                              "Default is the current style for nodes."],
                  "values":["style: %style%"]},

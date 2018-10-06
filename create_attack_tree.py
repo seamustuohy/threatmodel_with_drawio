@@ -135,7 +135,7 @@ https://github.com/jgraph/drawio/blob/e2e661b9937adc189e89cee711c06ce0fc59e711/s
                    "values":["padding: 0"]},
         "ignore":{"comments":["Comma-separated list of ignored columns for metadata. (These can be",
                               "used for connections and styles but will not be added as metadata.)"],
-                  "values":["ignore: id,image,fill,stroke,style"]},
+                  "values":["ignore: id,image,fill,stroke,style,type"]},
         "link":{"comments":["Column to be renamed to link attribute (used as link)."],
                 "values":["link: url"]},
         "nodespacing":{"comments":["Spacing between nodes. Default is 40."],
